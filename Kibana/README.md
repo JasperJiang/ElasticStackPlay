@@ -22,6 +22,3 @@ Whether you’re a user or admin, Kibana makes your data actionable by providing
 docker pull docker.elastic.co/kibana/kibana:7.6.2
 ```
 
-```bash
-docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.6.2
-```

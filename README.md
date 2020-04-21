@@ -28,3 +28,23 @@ Install the Elastic Stack products you want to use in the following order:
 5. APM Server [install instructions](https://www.elastic.co/guide/en/apm/server/7.0/installing.html)
 6. Elasticsearch Hadoop [install instructions](https://www.elastic.co/guide/en/elasticsearch/hadoop/7.6/install.html)
 Installing in this order ensures that the components each product depends on are in place.
+
+## Install in Docker
+
+### Install Elasticsearch
+
+```bash
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+```
+
+### Install Kibana
+
+```bash
+docker run -d --name kibana --link elasticsearch:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.6.2
+```
+
+### Install Filebeat
+
+```bash
+docker run -d --name filebeat -v /Users/jjiang153/Documents/Playground/ElasticStackPlay/Filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml --link kibana:kibana --link elasticsearch:elasticsearch docker.elastic.co/beats/filebeat:7.6.2
+```
